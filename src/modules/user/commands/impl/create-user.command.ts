@@ -3,6 +3,6 @@ import { CreateUserDTO } from '@server/modules/user/dto'
 
 export class CreateUserCommand implements ICommand {
   constructor(
-    public readonly createUserDTO: CreateUserDTO,
+    public readonly options: CreateUserDTO,
   ) {}
 }

@@ -1,7 +1,6 @@
-import { UserWelcomeHandler } from '@server/modules/user/events/handlers/user-welcome.handler'
+import { UserDeletedHandler } from './user-deleted.handler'
+import { UserWelcomeHandler } from './user-welcome.handler'
 import { UserCreatedHandler } from './user-created.handler'
+import { UserUpdatedHandler } from './user-updated.handler'
 
-export const EventHandlers = [
-  UserCreatedHandler,
-  UserWelcomeHandler,
-]
+export const EventHandlers = [UserCreatedHandler, UserWelcomeHandler, UserUpdatedHandler, UserDeletedHandler]

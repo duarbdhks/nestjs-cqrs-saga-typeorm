@@ -1,3 +1,5 @@
 export * from './user-abstract.event'
 export * from './user-created.event'
 export * from './user-welcome.event'
+export * from './user-updated.event'
+export * from './user-deleted.event'

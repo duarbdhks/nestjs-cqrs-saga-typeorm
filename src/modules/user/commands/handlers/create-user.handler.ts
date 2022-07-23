@@ -17,13 +17,14 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
     // this.loggerService.log('[CreateUserCommand] Async CreateUserHandler...')
     console.log(clc.blueBright('[CreateUserCommand] Async CreateUserHandler...'))
 
-    const { createUserDTO } = command
+    const { options } = command
 
-    const isUser = await this.userRepository.findOne({ where: { ...createUserDTO } })
+    const isUser = await this.userRepository.findOne({ where: { ...options } })
     if (isUser) throw new UserAlreadyExistException()
 
-    const createUserResult = await this.userRepository.createUser(createUserDTO)
-    const user = this.eventPublisher.mergeObjectContext(createUserResult)
+    const user = this.eventPublisher.mergeObjectContext(
+      await this.userRepository.createUser(options)
+    )
 
     user.commit()
   }

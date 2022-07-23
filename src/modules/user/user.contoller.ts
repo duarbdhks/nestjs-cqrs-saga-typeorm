@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { CreateUserDTO, GetUserDTO } from '@server/modules/user/dto'
+import { CreateUserDTO, GetUserDTO, UpdateUserDTO } from '@server/modules/user/dto'
 import { UserService } from '@server/modules/user/user.service'
-import { UserDTO } from '@shared/dto'
+import { UserDTO, UserIdDTO } from '@shared/dto'
 
 @Controller('users')
 @ApiTags('Users')
@@ -23,13 +23,20 @@ export class UserController {
   @ApiOperation({ summary: 'Update User' })
   @ApiResponse({ status: HttpStatus.OK, description: 'Update User.' })
   @Put('/:user_id')
-  async updateUser() {
+  async updateUser(
+    @Param() param: UserIdDTO,
+    @Body() body: UpdateUserDTO,
+  ) {
+    return this.userService.updateUser({ ...param, ...body })
   }
 
   @ApiOperation({ summary: 'Delete User' })
   @ApiResponse({ status: HttpStatus.OK, description: 'Delete User.' })
   @Delete('/:user_id')
-  async deleteUser() {
+  async deleteUser(
+    @Param() param: UserIdDTO,
+  ) {
+    return this.userService.deleteUser({ ...param })
   }
 
   @ApiOperation({ summary: 'List User' })

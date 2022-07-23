@@ -11,6 +11,6 @@ export class UserCreatedHandler implements IEventHandler<UserCreatedEvent> {
 
   handle(event: UserCreatedEvent) {
     // this.loggerService.log(`[UserCreatedEvent] ${JSON.stringify(event)}`)
-    console.log(clc.blueBright(`[UserCreatedEvent]`), event)
+    console.log(clc.blueBright(`[UserCreatedEvent] UserCreatedHandler...`), event)
   }
 }
