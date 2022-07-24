@@ -13,7 +13,7 @@ export const config = {
     scheme: ENV.SWAGGER_SCHEME === 'https' ? 'https' : 'http',
   },
   db: {
-    connectionString: ENV.DB_URL || 'postgres://boilerplate:vmfflxh2@localhost:30030/boilerplate',
+    connectionString: ENV.DB_URL,
     max: +ENV.DB_POOLSIZE || 1,
   },
   event_store: {
